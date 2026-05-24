@@ -1,0 +1,11 @@
+git status - see the status of the files
+    untracked - new files that git doesn't yet track
+    modified - changed
+    staged - file is ready to be committed
+    unmodified - unchanged
+
+git add - moves to staging area
+
+git commit - record the change
+
+
