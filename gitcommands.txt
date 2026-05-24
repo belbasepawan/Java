@@ -8,6 +8,6 @@ git add - moves to staging area
 
 git commit - record the change
 
-git push - upload the local repo content to remote app
+git push - upload the local repo content to remote app || git push origin main
 
 
