@@ -62,6 +62,117 @@ class Student{
 
 public class StudentManager{
 
+    public static int askprompt(Scanner scanner){
+                int choice;
+                System.out.println(" ");
+                System.out.println("1. Add Student");
+                System.out.println("2. View Student");
+                System.out.println("3. Delete Student"); 
+                System.out.println("4. Exit");  
+                System.out.println(" ");
+                System.out.print("Enter Your Choice: "); 
+                choice = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println("===================");
+
+                return choice;             
+    }
+
+    public static Student addstudent(Scanner scanner, int id){
+
+        String name;
+        int age;
+        int rollno;
+        String faculty;
+        int sem;
+
+        System.out.println(" ");
+            System.out.print("Enter name: ");
+            name = scanner.nextLine();
+
+            
+            System.out.print("Enter age: ");
+            age = scanner.nextInt();
+            scanner.nextLine();
+            while(true){
+                if(age > 30){
+                    System.out.print("Age can't be greater than 30, Enter again(for "+id+"):");
+                    age = scanner.nextInt();
+                    scanner.nextLine();
+                }else if(age >= 18)break;
+                else{
+                    System.out.print("Age can't be less than 18, Enter again(for "+id+"):");
+                    age = scanner.nextInt();
+                    scanner.nextLine();
+                }
+
+            }
+
+
+            System.out.print("Enter rollno: ");
+            rollno = scanner.nextInt();
+            scanner.nextLine();
+            while(true){
+                
+                if(rollno > 35){
+                    System.out.print("Roll no. cannot be greater than 35. Enter again(for "+id+"):");
+                    rollno = scanner.nextInt();
+                    scanner.nextLine();
+                }else if(rollno >= 1)break;
+                else{
+                    System.out.print("Roll no. cannot be less than 1. Enter again(for "+id+"):");
+                    rollno = scanner.nextInt();
+                    scanner.nextLine();
+                }
+
+            }
+
+
+            System.out.print("Enter faculty (\"BCA\", \"BITM\", \"BscCSIT\"): ");
+            faculty = scanner.nextLine();
+            while(true){
+
+                if(faculty.equals("BCA")|| faculty.equals("BITM") || faculty.equals("BscCSIT"))break;
+                else{
+
+                    System.out.print("Faculty can be BCA, BITM or BscCSIT. You entered "+faculty+". Enter again(for "+id+"):");
+                    faculty = scanner.nextLine();
+                }
+
+            }
+
+
+            System.out.print("Enter sem: ");
+            sem = scanner.nextInt();
+            scanner.nextLine();
+            while(true){
+
+                if(sem > 8){
+                    System.out.print("Semester cannot be greater than 8. Enter again(for "+id+"):");
+                    sem = scanner.nextInt();
+                    scanner.nextLine();
+                }else if(sem >= 1)break;
+                else{
+                    System.out.print("Semester cannot be less than 1. Enter again(for "+id+"):");
+                    sem = scanner.nextInt();
+                    scanner.nextLine();
+                }
+
+            }           
+            
+            
+            System.out.println("\nAdded Student with ID: " + id);
+            System.out.println("===================");
+            
+            return new Student(id, name, age, rollno, faculty, sem);
+    }
+
+    public static void viewstudent(Scanner scanner, ArrayList<Student> s){
+         
+    }
+
+    public static void deletestudent(){}
+
     public static void main(String []args){
         int choice;
         int id = 1;
@@ -70,12 +181,6 @@ public class StudentManager{
         int deleteid;
 
         boolean idsearchstatus = false;
-
-        String name;
-        int age;
-        int rollno;
-        String faculty;
-        int sem;
         
 
         Scanner scanner = new Scanner(System.in);   
@@ -88,121 +193,34 @@ public class StudentManager{
         
         mainloop:
         while(true){
-
             try {
-                System.out.println(" ");
-                System.out.println("1. Add Student");
-                System.out.println("2. View Student");
-                System.out.println("3. Delete Student"); 
-                System.out.println("4. Exit");  
-                System.out.println(" ");
-                System.out.print("Enter Your Choice: "); 
-                choice = scanner.nextInt();
-                scanner.nextLine();
-                System.out.println("===================");
+                choice = askprompt(scanner);
 
                 if(choice < 1 || choice > 4){
                     System.out.println("\n! Invalid Choice Try again");
                     continue;
                 } 
-                
                 switch(choice){
+
                     case 1:
+                        
                         while(true){
                             try {
-                                
-                                System.out.println(" ");
-                                System.out.print("Enter name: ");
-                                name = scanner.nextLine();
-
-                                
-                                System.out.print("Enter age: ");
-                                age = scanner.nextInt();
-                                scanner.nextLine();
-                                while(true){
-                                    if(age > 30){
-                                        System.out.print("Age can't be greater than 30, Enter again(for "+id+"):");
-                                        age = scanner.nextInt();
-                                        scanner.nextLine();
-                                    }else if(age >= 18)break;
-                                    else{
-                                        System.out.print("Age can't be less than 18, Enter again(for "+id+"):");
-                                        age = scanner.nextInt();
-                                        scanner.nextLine();
-                                    }
-
-                                }
-
-
-                                System.out.print("Enter rollno: ");
-                                rollno = scanner.nextInt();
-                                scanner.nextLine();
-                                while(true){
-                                    
-                                    if(rollno > 35){
-                                        System.out.print("Roll no. cannot be greater than 35. Enter again(for "+id+"):");
-                                        rollno = scanner.nextInt();
-                                        scanner.nextLine();
-                                    }else if(rollno >= 1)break;
-                                    else{
-                                        System.out.print("Roll no. cannot be less than 1. Enter again(for "+id+"):");
-                                        rollno = scanner.nextInt();
-                                        scanner.nextLine();
-                                    }
-
-                                }
-
-
-                                System.out.print("Enter faculty (\"BCA\", \"BITM\", \"BscCSIT\"): ");
-                                faculty = scanner.nextLine();
-                                while(true){
-
-                                    if(faculty.equals("BCA")|| faculty.equals("BITM") || faculty.equals("BscCSIT"))break;
-                                    else{
-
-                                        System.out.print("Faculty can be BCA, BITM or BscCSIT. You entered "+faculty+". Enter again(for "+id+"):");
-                                        faculty = scanner.nextLine();
-                                    }
-
-                                }
-
-
-                                System.out.print("Enter sem: ");
-                                sem = scanner.nextInt();
-                                scanner.nextLine();
-                                while(true){
-
-                                    if(sem > 8){
-                                        System.out.print("Semester cannot be greater than 8. Enter again(for "+id+"):");
-                                        sem = scanner.nextInt();
-                                        scanner.nextLine();
-                                    }else if(sem >= 1)break;
-                                    else{
-                                        System.out.print("Semester cannot be less than 1. Enter again(for "+id+"):");
-                                        sem = scanner.nextInt();
-                                        scanner.nextLine();
-                                    }
-
-                                }           
+                                s.add(addstudent(scanner, id));
+                                id++;
                                 break;
-                                
                             } catch (InputMismatchException e) {
                                 System.out.println("\n Invalid input Try again");
                                 scanner.nextLine();
-                                continue;
-                            }
-                            
+                            } 
                         }
-
-                        s.add(new Student(id, name, age, rollno, faculty, sem));
-                        System.out.println("\nAdded Student with ID: " + id);
-                        System.out.println("===================");
-                        id++;
-                        break;
                     
                     case 2:
                         while(true){
                             try {
+
+                                
+                                viewstudent(scanner,s);
                                 
                                 System.out.println(" ");
                                 System.out.print("Enter Id(0 for all): ");
@@ -236,11 +254,14 @@ public class StudentManager{
                                     
                                 }
 
+                                System.out.println("===================");
+
                                 if( idsearchstatus) break;
                                 else{
                                     System.out.println("\nCouldnot find id. Try again");
-                                    continue;
                                 }
+
+                                
                                 
                             } catch (InputMismatchException e) {
                                 System.out.println("\nInvalid input Try again");
@@ -249,8 +270,7 @@ public class StudentManager{
                             }
                             
                         }
-                        System.out.println("===================");
-                        break;
+                        
                     
                     case 3:
                         while(true){
