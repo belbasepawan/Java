@@ -155,7 +155,7 @@ public class StudentManager{
                                     return false;
                                 }else if (searchid == 0 ){
                                     System.out.println("\nPrinting all student details");
-                                    for (int i = 0; i < s.size(); i++) {
+                                    for (int i = 0; i < size; i++) {
                                             System.out.println("\n" + s.get(i));
                                             
                                         }
