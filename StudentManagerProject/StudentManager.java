@@ -246,8 +246,8 @@ public class StudentManager{
         System.out.println("===== Student Management System =====");
 
         try{
-            mainloop:
-            while(true){
+            boolean continue_loop = false;
+            while(continue_loop){
                     choice = askprompt(scanner);
                      
                     switch(choice){
@@ -282,7 +282,7 @@ public class StudentManager{
                             break;
                         
                         case 4:
-                            break mainloop;
+                            continue_loop = false;
                         
                         default:
                             break;
